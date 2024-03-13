@@ -1,0 +1,25 @@
+{
+  "name": "zero-cost-beanstalk-atlas",
+  "version": "0.0.1",
+  "description": "A cost-efficient starter template for deploying Node.js services on AWS Elastic Beanstalk with MongoDB Atlas, tailored for personal projects.",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kareemaly/zero-cost-beanstalk-atlas.git"
+  },
+  "keywords": [
+    "free-tier",
+    "beanstalk",
+    "mongodbatlas",
+    "aws"
+  ],
+  "author": "Kareem Elbahrawy <kareem@kareemelbahrawy.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kareemaly/zero-cost-beanstalk-atlas/issues"
+  },
+  "homepage": "https://github.com/kareemaly/zero-cost-beanstalk-atlas#readme"
+}
