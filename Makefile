@@ -32,4 +32,19 @@ reset:
 	@echo "========= Resetting the infrastructure"
 	@cd terraform && terraform apply -var "artifact_version=''"
 	@echo "========= Infrastructure reset"
+
+destroy:
+	@echo "========= Destroying the infrastructure"
+	@echo "========= Deleting artifacts from the S3 bucket: $(TF_VAR_artifact_bucket_name)"
+	@read -p "Are you sure you want to delete all contents in the bucket $(TF_VAR_artifact_bucket_name)? [y/N]: " confirm; \
+	if [ "$$confirm" = "y" ] || [ "$$confirm" = "Y" ] || [ "$$confirm" = "yes" ] || [ "$$confirm" = "Yes" ]; then \
+		aws s3 rb s3://$(TF_VAR_artifact_bucket_name)/ --force; \
+		echo "========= Artifacts deleted"; \
+	else \
+		echo "Deletion aborted"; \
+		exit 1; \
+	fi
+	@cd terraform && terraform destroy
+	@echo "========= Infrastructure destroyed"
+
 	
