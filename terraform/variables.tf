@@ -9,12 +9,6 @@ variable "namespace" {
   description = "Used in ensuring unique names for resources. For example, an abbreviation for your project."
 }
 
-variable "environment" {
-  type        = string
-  description = "The environment in which the infrastructure is being deployed."
-  default     = "dev"
-}
-
 variable "name" {
   type        = string
   description = "The name of the service being deployed."
