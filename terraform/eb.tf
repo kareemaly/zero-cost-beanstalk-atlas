@@ -24,7 +24,7 @@ resource "aws_elastic_beanstalk_environment" "main" {
   application         = aws_elastic_beanstalk_application.main.name
   solution_stack_name = "64bit Amazon Linux 2023 v6.1.1 running Node.js 20"
   tier                = "WebServer"
-  version_label       = aws_elastic_beanstalk_application_version.main.name
+  version_label       = aws_elastic_beanstalk_application_version.main[0].name
 
   setting {
     namespace = "aws:autoscaling:launchconfiguration"
@@ -60,6 +60,12 @@ resource "aws_elastic_beanstalk_environment" "main" {
     namespace = "aws:elasticbeanstalk:application:environment"
     name      = "NODE_ENV"
     value     = "production"
+  }
+
+  setting {
+    namespace = "aws:elasticbeanstalk:application:environment"
+    name      = "VERSION"
+    value     = var.artifact_version
   }
 
   tags = local.common_tags

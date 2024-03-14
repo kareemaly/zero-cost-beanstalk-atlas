@@ -12,12 +12,6 @@ build: install
 	@zip -r ./dist/$(TF_VAR_artifact_version).zip src package.json package-lock.json
 	@echo "========= Application built"
 
-deploy-artifact-infra:
-	@echo "========= Deploying the artifact infrastructure (S3 bucket)"
-	@export TF_LOG=ERROR
-	@cd terraform && terraform apply -target=aws_s3_bucket.artifact
-	@echo "========= Artifact infrastructure deployed"
-
 deploy-app:
 	@echo "========= Deploying the application"
 	@echo "========= Uploading the artifact to S3"
@@ -32,9 +26,10 @@ deploy-infra:
 	@echo "========= Full infrastructure deployed"
 
 # Deploy target
-deploy: build deploy-artifact-infra deploy-app deploy-infra
+deploy: build deploy-app deploy-infra
 
 reset:
 	@echo "========= Resetting the infrastructure"
 	@cd terraform && terraform apply -var "artifact_version=''"
 	@echo "========= Infrastructure reset"
+	
