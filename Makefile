@@ -30,7 +30,8 @@ deploy: build deploy-app deploy-infra
 
 reset:
 	@echo "========= Resetting the infrastructure"
-	@cd terraform && terraform apply -var "artifact_version=''"
+	@cd terraform && terraform init
+	@cd terraform && terraform apply -var "artifact_version="
 	@echo "========= Infrastructure reset"
 
 destroy:
